@@ -1,8 +1,9 @@
 #!/bin/sh
 
 # Write out the configuration file
+echo "Configuring Vhabot with Environment Variables"
 
-cat >/app/vhabot/config.xml <<EOF
+cat >/app/config.xml <<EOF
 <?xml version="1.0"?>
 <Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Core>
@@ -12,7 +13,7 @@ cat >/app/vhabot/config.xml <<EOF
     <ConfigPath>/app/data/config</ConfigPath>
     <PluginsPath>plugins</PluginsPath>
     <SkinsPath>skins</SkinsPath>
-    <CachePath>xmlcache</CachePath>
+    <CachePath>/app/data/xmlcache</CachePath>
     <Debug>false</Debug>
   </Core>
   <Bot>
@@ -27,4 +28,8 @@ cat >/app/vhabot/config.xml <<EOF
 </Configuration>
 EOF
 
-exec /usr/bin/mono /app/vhabot/VhaBot.exe
+chmod 644 /app/config.xml
+
+# Drop privilege to vhabot
+echo "Starting Vhabot"
+exec su - vhabot -c "HOME='/app' /usr/bin/mono /app/vhabot/VhaBot.exe /app/config.xml"

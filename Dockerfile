@@ -1,15 +1,20 @@
-FROM phusion/baseimage
+FROM ubuntu:14.04.1
 MAINTAINER Ted Chen <ted@nephilagraphic.com>
 
 ENV VHABOT_VERSION 0.7.12
 
-RUN apt-get update && apt-get install -y mono-runtime libmono-corlib2.0-cil libmono-system-runtime2.0-cil mono-gmcs unzip wget
+RUN apt-get update && apt-get install -y bash nano mono-runtime libmono-corlib2.0-cil libmono-system-runtime2.0-cil mono-gmcs unzip wget
 
 RUN \
-  wget https://bitbucket.org/Llie/llie_vhabot/downloads/VhaBot_${VHABOT_VERSION}_LE_mono.zip && \
-  unzip VhaBot_*_LE_mono.zip -d /app && \
-  rm VhaBot_*_LE_mono.zip && \
-  ln -s /app/VhaBot_${VHABOT_VERSION}_LE /app/vhabot
+    wget https://bitbucket.org/Llie/llie_vhabot/downloads/VhaBot_${VHABOT_VERSION}_LE_mono.zip && \
+    unzip VhaBot_*_LE_mono.zip -d /app && \
+    rm VhaBot_*_LE_mono.zip && \
+    ln -s /app/VhaBot_${VHABOT_VERSION}_LE /app/vhabot
+
+RUN \
+    useradd vhabot && \
+    mkdir /app/data -p && \
+    chown vhabot.vhabot -R /app/data
 
 # Exposed ENV
 ENV AO_USER=MyUser \

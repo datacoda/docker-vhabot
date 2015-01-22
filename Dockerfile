@@ -22,4 +22,7 @@ ENV AO_USER=MyUser \
 ADD run.sh /run.sh
 RUN chmod 755 /*.sh
 
+# Patch this for now
+COPY patch/VhaBot.exe /app/vhabot/VhaBot.exe
+
 CMD ["/run.sh"]

@@ -14,3 +14,9 @@ get incremented.
         docker build -t dataferret/vhabot
 
         docker run -it -e AO_USER=myuser -e AO_PASS=secret -e VHABOT_ADMIN=mychar -e VHABOT_CHARACTER=botname dataferret/vhabot
+
+Data
+----
+
+The bot stores runtime user-defined configuration in /app/data/config.
+You can mount this as a volume for persistence.

@@ -9,7 +9,7 @@ cat >/app/vhabot/config.xml <<EOF
     <CentralServer>central.vhabot.net</CentralServer>
     <CentralAccount />
     <CentralPassword />
-    <ConfigPath>config</ConfigPath>
+    <ConfigPath>/app/data/config</ConfigPath>
     <PluginsPath>plugins</PluginsPath>
     <SkinsPath>skins</SkinsPath>
     <CachePath>xmlcache</CachePath>

@@ -1,7 +1,9 @@
 #!/bin/sh
 
+set -e
+
 # Write out the configuration file
-echo "Configuring Vhabot with Environment Variables"
+logger "Configuring Vhabot with Environment Variables"
 
 cat >/app/config.xml <<EOF
 <?xml version="1.0"?>
@@ -30,6 +32,3 @@ EOF
 
 chmod 644 /app/config.xml
 
-# Drop privilege to vhabot
-echo "Starting Vhabot"
-exec su - vhabot -c "HOME='/app' /usr/bin/mono /app/vhabot/VhaBot.exe /app/config.xml"

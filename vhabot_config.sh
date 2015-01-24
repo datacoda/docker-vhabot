@@ -3,19 +3,20 @@
 set -e
 
 # Write out the configuration file
-logger "Configuring Vhabot with Environment Variables"
+echo "Configuring Vhabot with Environment Variables"
 
-cat >/app/config.xml <<EOF
+mkdir /etc/vhabot -p
+cat >/etc/vhabot/config.xml <<EOF
 <?xml version="1.0"?>
 <Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Core>
     <CentralServer>central.vhabot.net</CentralServer>
     <CentralAccount />
     <CentralPassword />
-    <ConfigPath>/app/data/config</ConfigPath>
+    <ConfigPath>/var/lib/vhabot/config.d</ConfigPath>
     <PluginsPath>plugins</PluginsPath>
     <SkinsPath>skins</SkinsPath>
-    <CachePath>/app/data/xmlcache</CachePath>
+    <CachePath>/var/lib/vhabot/xmlcache</CachePath>
     <Debug>false</Debug>
   </Core>
   <Bot>
@@ -30,5 +31,8 @@ cat >/app/config.xml <<EOF
 </Configuration>
 EOF
 
-chmod 644 /app/config.xml
+chmod 644 /etc/vhabot/config.xml
 
+# Fix permissions on any attached volumes
+chown vhabot.vhabot -R /var/lib/vhabot/config.d
+chown vhabot.vhabot -R /var/lib/vhabot/xmlcache

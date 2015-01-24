@@ -9,18 +9,23 @@ CMD ["/sbin/my_init"]
 
 RUN \
     apt-get update && \
-    apt-get install -y bash nano mono-runtime libmono-corlib2.0-cil libmono-system-runtime2.0-cil mono-gmcs unzip wget && \
+    apt-get install -y \
+        bash nano wget unzip \
+        mono-runtime libmono-corlib2.0-cil libmono-system-runtime2.0-cil mono-gmcs && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Change if older version no longer exists.
 ENV VHABOT_VERSION 0.7.12
 
+VOLUME /var/lib/vhabot/config.d
+VOLUME /var/lib/vhabot/xmlcache
+
 RUN \
     wget https://bitbucket.org/Llie/llie_vhabot/downloads/VhaBot_${VHABOT_VERSION}_LE_mono.zip && \
-    unzip VhaBot_*_LE_mono.zip -d /app && \
+    unzip VhaBot_*_LE_mono.zip -d /opt && \
     rm VhaBot_*_LE_mono.zip && \
-    ln -s /app/VhaBot_${VHABOT_VERSION}_LE /app/vhabot
+    ln -s /opt/VhaBot_${VHABOT_VERSION}_LE /opt/vhabot
 
 # Exposed Configuration Variables
 ENV \
@@ -28,7 +33,7 @@ ENV \
     AO_PASS=MyPassword \
     VHABOT_ADMIN=GameCharAdmin \
     VHABOT_CHARACTER=GameChar \
-    VHABOT_DIMENSION=Rubika
+    VHABOT_DIMENSION=RubiKa
 
 # Configure service
 RUN \
@@ -43,11 +48,10 @@ RUN \
     useradd -u 999 vhabot && \
     chmod 775 /etc/my_init.d/vhabot_config.sh && \
     chmod 775 /etc/service/vhabot/run && \
-    mkdir /app/data -p && \
-    chown vhabot.vhabot -R /app/data
+    chown vhabot.vhabot -R /opt/vhabot/data
 
 # Patch this for now
-COPY patch/VhaBot.exe /app/vhabot/VhaBot.exe
+COPY patch/VhaBot.exe /opt/vhabot/VhaBot.exe
 
 # Clean up when done
 RUN rm -rf /tmp/* /var/tmp/*

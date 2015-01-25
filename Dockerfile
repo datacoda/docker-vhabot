@@ -52,6 +52,7 @@ RUN \
 
 # Patch this for now
 COPY patch/VhaBot.exe /opt/vhabot/VhaBot.exe
+RUN chmod 644 /opt/vhabot/VhaBot.exe
 
 # Clean up when done
 RUN rm -rf /tmp/* /var/tmp/*

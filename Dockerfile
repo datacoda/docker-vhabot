@@ -40,14 +40,14 @@ RUN \
     mkdir /etc/service/vhabot -p && \
     mkdir /etc/my_init.d -p
 
-COPY vhabot_config.sh /etc/my_init.d/vhabot_config.sh
-COPY vhabot.sh /etc/service/vhabot/run
+COPY init_config.sh /etc/my_init.d/init_config.sh
+COPY run_vhabot.sh /etc/service/vhabot/run
 
 # Secure permissions
 RUN \
     useradd -u 999 vhabot && \
-    chmod 775 /etc/my_init.d/vhabot_config.sh && \
-    chmod 775 /etc/service/vhabot/run && \
+    chmod 750 /etc/my_init.d/init_config.sh && \
+    chmod 750 /etc/service/vhabot/run && \
     chown vhabot.vhabot -R /opt/vhabot/data
 
 # Patch this for now

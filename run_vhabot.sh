@@ -9,9 +9,9 @@ function finish {
 }
 trap finish EXIT
 
-echo "Starting bot ${VHABOT_CHARACTER}@${VHABOT_DIMENSION}"
+echo "Starting bot ${VHABOT_CHARACTER}@${VHABOT_DIMENSION:-RubiKa}"
 
-logger -t vhabot "Starting bot ${VHABOT_CHARACTER}@${VHABOT_DIMENSION}"
+logger -t vhabot "Starting bot ${VHABOT_CHARACTER}@${VHABOT_DIMENSION:-RubiKa}"
 
 exec \
     /sbin/setuser vhabot \

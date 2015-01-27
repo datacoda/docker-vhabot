@@ -24,7 +24,7 @@ cat >/etc/vhabot/config.xml <<EOF
     <Password>${AO_PASS}</Password>
     <Character>${VHABOT_CHARACTER}</Character>
     <Admin>${VHABOT_ADMIN}</Admin>
-    <Dimension>${VHABOT_DIMENSION}</Dimension>
+    <Dimension>${VHABOT_DIMENSION:-RubiKa}</Dimension>
     <Enabled>true</Enabled>
     <Master>false</Master>
   </Bot>

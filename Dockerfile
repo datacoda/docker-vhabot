@@ -28,11 +28,11 @@ RUN \
     ln -s /opt/VhaBot_${VHABOT_VERSION}_LE /opt/vhabot
 
 # Exposed Configuration Variables
-ENV AO_USER=MyUser
-ENV AO_PASS=MyPassword
-ENV VHABOT_ADMIN=GameCharAdmin
-ENV VHABOT_CHARACTER=GameChar
-ENV VHABOT_DIMENSION=RubiKa
+ENV AO_USER MyUser
+ENV AO_PASS MyPassword
+ENV VHABOT_ADMIN GameCharAdmin
+ENV VHABOT_CHARACTER GameChar
+ENV VHABOT_DIMENSION RubiKa
 
 # Configure service
 RUN \

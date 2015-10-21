@@ -32,11 +32,6 @@ Note that the bitbucket location does not keep archived versions of the
 zip file hence you might have to set the VHABOT_VERSION should that version
 get incremented.
 
-For the time being, this Dockerfile includes a patch to vhabot that allows it to run as a detached
-docker container.  It'll overwrite the download package's version of VhaBot.exe.
-See [Llie_VhaBot - Issue #20](https://bitbucket.org/Llie/llie_vhabot/issue/20/stdout-stderr-pipe-on-ubuntu-throws-an)
-
-
 ### License
 
 MIT

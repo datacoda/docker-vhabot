@@ -16,7 +16,7 @@ RUN \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Change if older version no longer exists.
-ENV VHABOT_VERSION 0.7.12
+ENV VHABOT_VERSION 0.7.13
 
 VOLUME /var/lib/vhabot/config.d
 VOLUME /var/lib/vhabot/xmlcache
@@ -48,10 +48,6 @@ RUN \
     chmod 750 /etc/my_init.d/init_config.sh && \
     chmod 750 /etc/service/vhabot/run && \
     chown vhabot.vhabot -R /opt/vhabot/data
-
-# Patch this for now
-COPY patch/VhaBot.exe /opt/vhabot/VhaBot.exe
-RUN chmod 644 /opt/vhabot/VhaBot.exe
 
 # Clean up when done
 RUN rm -rf /tmp/* /var/tmp/*

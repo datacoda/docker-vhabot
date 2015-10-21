@@ -1,3 +1,5 @@
 *.gem
 *.tar.gz
 .idea/
+.vagrant/
+vagrant.yml

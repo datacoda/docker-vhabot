@@ -3,10 +3,15 @@
 
 require 'yaml'
 
-# Copy the file vagrant.yml.template to vagrant.yml and 
-# enter the local testing values.
+# Before use, create a file .envs.yml
+# account:
+#   user: aoname
+#   pass: 12345
+#   admin: charname
+#   character: botname
+#   dimension: RubiKa
 
-settings = YAML.load_file 'vagrant.yml'
+settings = YAML.load_file '.envs.yml'
 
 Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/vagrant", disabled: true
@@ -14,7 +19,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "docker" do |d|
     d.vagrant_vagrantfile = "host/Vagrantfile"
     d.build_dir = "."
-    d.has_ssh = true
+    d.has_ssh = false
     d.env = {
       AO_USER: settings['account']['user'],
       AO_PASS: settings['account']['pass'],
@@ -23,5 +28,4 @@ Vagrant.configure("2") do |config|
       VHABOT_DIMENSION: settings['account']['dimension']
     }
   end
-  config.ssh.port = 22
 end

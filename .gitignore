@@ -2,4 +2,4 @@
 *.tar.gz
 .idea/
 .vagrant/
-vagrant.yml
+.envs.yml

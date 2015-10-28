@@ -9,25 +9,30 @@ Docker container for Anarchy Online Vhabot.  Uses the LE variant.
 
 ### Usage
 
-        docker build -t dataferret/vhabot
-
         docker run -it \
-          -e AO_USER=myuser \
-          -e AO_PASS=secret \
-          -e VHABOT_ADMIN=mychar \
-          -e VHABOT_CHARACTER=botname \
-          -e VHABOT_DIMENSION=RubiKa \
+          -e LOGIN=myuser \
+          -e PASS=secret \
+          -e VHABOT=botname \
+          -e ADMIN=mychar \
+          -e DIMENSION=RubiKa \
           dataferret/vhabot
+
+* LOGIN : Anarchy Online account
+* PASS : Login password
+* VHABOT : Character name for vhabot
+* ADMIN : Character name for primary admin access
+* DIMENSION : [optional] Default as RubiKa
+
 
 ### Data Volumes
 
 The bot stores runtime user-defined configuration in `/var/lib/vhabot/config.d`.
 You can mount this as a volume for persistence.
 
-A cache directory `/var/lib/vhabot/xmlcache`
+A cache directory `/var/lib/vhabot/xmlcache` is also set as a volume.
 
 
-### Notes
+### Build Notes
 
 Note that the bitbucket location does not keep archived versions of the
 zip file hence you might have to set the VHABOT_VERSION should that version

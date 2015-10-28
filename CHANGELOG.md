@@ -1,5 +1,13 @@
-## Master
+## Latest
 
+## 0.1.4 (2015-10-27)
+
+  - Refactored ENV variables.
+  - Changed base image to ubuntu:trusty
+
+## 0.1.3 (2015-10-21)
+
+  - Updated to Vhabot 0.7.13
   - Using Docker v 1.3 ENV format (fixes 0.1.2)
 
 ## 0.1.2 (2015-01-28)

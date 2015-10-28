@@ -5,10 +5,10 @@ require 'yaml'
 
 # Before use, create a file .envs.yml
 # account:
-#   user: aoname
+#   login: aoname
 #   pass: 12345
 #   admin: charname
-#   character: botname
+#   vhabot: botname
 #   dimension: RubiKa
 
 settings = YAML.load_file '.envs.yml'
@@ -21,11 +21,11 @@ Vagrant.configure("2") do |config|
     d.build_dir = "."
     d.has_ssh = false
     d.env = {
-      AO_USER: settings['account']['user'],
-      AO_PASS: settings['account']['pass'],
-      VHABOT_ADMIN: settings['account']['admin'],
-      VHABOT_CHARACTER: settings['account']['character'],
-      VHABOT_DIMENSION: settings['account']['dimension']
+      LOGIN: settings['account']['login'],
+      PASS: settings['account']['pass'],
+      VHABOT: settings['account']['vhabot'],
+      ADMIN: settings['account']['admin'],
+      DIMENSION: settings['account']['dimension']
     }
   end
 end

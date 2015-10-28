@@ -2,11 +2,11 @@ FROM ubuntu:trusty
 MAINTAINER Ted Chen <tedlchen@gmail.com>
 
 # Exposed Configuration Variables
-ENV AO_USER=""
-ENV AO_PASS=""
-ENV VHABOT_ADMIN=""
-ENV VHABOT_CHARACTER=""
-ENV VHABOT_DIMENSION="RubiKa"
+ENV LOGIN=""
+ENV PASS=""
+ENV ADMIN=""
+ENV VHABOT=""
+ENV DIMENSION="RubiKa"
 
 RUN \
     apt-get update && \

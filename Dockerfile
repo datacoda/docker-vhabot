@@ -32,6 +32,8 @@ RUN \
     chown vhabot.vhabot -R /opt/vhabot/data
 
 COPY docker-entrypoint.sh /entrypoint.sh
+RUN chmod 755 /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD [""]

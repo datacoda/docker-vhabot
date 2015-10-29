@@ -1,5 +1,9 @@
 ## Latest
 
+## 0.1.5 (2015-10-29)
+
+  - Permission fixes to entrypoint script.
+
 ## 0.1.4 (2015-10-27)
 
   - Refactored ENV variables.

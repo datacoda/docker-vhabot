@@ -51,8 +51,9 @@ EOF
 chmod 644 /etc/vhabot/config.xml
 
 # Fix permissions on any attached volumes
-chown vhabot.vhabot -R /var/lib/vhabot/config.d
-chown vhabot.vhabot -R /var/lib/vhabot/xmlcache
+chown vhabot.vhabot -R /var/lib/vhabot
+su -m vhabot -c "mkdir -p /var/lib/vhabot/config.d"
+su -m vhabot -c "mkdir -p /var/lib/vhabot/xmlcache"
 
 # Drop privilege to vhabot.
 

@@ -19,8 +19,7 @@ RUN \
 # Change if older version no longer exists.
 ENV VHABOT_VERSION 0.7.13
 
-VOLUME /var/lib/vhabot/config.d
-VOLUME /var/lib/vhabot/xmlcache
+VOLUME /var/lib/vhabot
 
 RUN \
     wget https://bitbucket.org/Llie/llie_vhabot/downloads/VhaBot_${VHABOT_VERSION}_LE_mono.zip && \

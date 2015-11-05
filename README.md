@@ -26,10 +26,10 @@ Docker container for Anarchy Online Vhabot.  Uses the (Llie's Edition](https://b
 
 ### Data Volumes
 
-The bot stores runtime user-defined configuration in `/var/lib/vhabot/config.d`.
-You can mount this as a volume for persistence.
+The container uses /var/lib/vhabot as a mounted volume.
 
-A cache directory `/var/lib/vhabot/xmlcache` is also set as a volume.
+The bot stores runtime user-defined configuration in `/var/lib/vhabot/config.d`.
+A cache directory `/var/lib/vhabot/xmlcache` is also set.
 
 
 ### Build Notes

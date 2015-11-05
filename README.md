@@ -4,7 +4,7 @@ dataferret/vhabot
 ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)
 [![](https://badge.imagelayers.io/dataferret/vhabot:latest.svg)](https://imagelayers.io/?images=dataferret/vhabot:latest 'Get your own badge on imagelayers.io')
 
-Docker container for Anarchy Online Vhabot.  Uses the LE variant.
+Docker container for Anarchy Online Vhabot.  Uses the (Llie's Edition](https://bitbucket.org/Llie/llie_vhabot/overview).
 
 
 ### Usage

@@ -23,7 +23,6 @@ Docker container for Anarchy Online Vhabot.  Uses the (Llie's Edition](https://b
 * ADMIN : Character name for primary admin access
 * DIMENSION : [optional] Default as RubiKa
 
-
 ### Data Volumes
 
 The container uses /var/lib/vhabot as a mounted volume.
@@ -34,9 +33,9 @@ A cache directory `/var/lib/vhabot/xmlcache` is also set.
 
 ### Build Notes
 
-Note that the bitbucket location does not keep archived versions of the
-zip file hence you might have to set the VHABOT_VERSION should that version
-get incremented.
+Note that by default, the deployment script will download the latest bitbucket
+repository.  For specific tags, use the COMMIT_TAG environment variable while
+building the docker image.
 
 ### License
 

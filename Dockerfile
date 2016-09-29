@@ -1,37 +1,55 @@
 FROM ubuntu:trusty
-MAINTAINER Ted Chen <tedlchen@gmail.com>
+MAINTAINER Li-Te Chen <datacoda@gmail.com>
 
-# Exposed Configuration Variables
-ENV LOGIN=""
-ENV PASS=""
-ENV ADMIN=""
-ENV VHABOT=""
-ENV DIMENSION="RubiKa"
+# Install prerequisite packages
 
 RUN \
     apt-get update && \
     apt-get install -y \
-        bash nano wget unzip \
-        mono-runtime libmono-corlib2.0-cil libmono-system-runtime2.0-cil mono-gmcs && \
+        bash tcsh nano mercurial unzip make \
+        mono-runtime libmono-corlib2.0-cil libmono-system-runtime2.0-cil \
+        mono-gmcs mono-devel mono-xbuild && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Change if older version no longer exists.
-ENV VHABOT_VERSION 0.7.13
+# Mount settings directory as volume for persistence.
 
 VOLUME /var/lib/vhabot
 
-RUN \
-    wget https://bitbucket.org/Llie/llie_vhabot/downloads/VhaBot_${VHABOT_VERSION}_LE_mono.zip && \
-    unzip VhaBot_*_LE_mono.zip -d /opt && \
-    rm VhaBot_*_LE_mono.zip && \
-    ln -s /opt/VhaBot_${VHABOT_VERSION}_LE /opt/vhabot && \
-    rm -rf /tmp/* /var/tmp/* && \
+
+# =====================================
+# Exposed Configuration Variables
+# =====================================
+
+# [Req] AO account login
+ENV LOGIN=""
+ENV PASS=""
+
+# [Req] Super administrator character name
+ENV ADMIN=""
+
+# [Req] Bot character name
+ENV VHABOT=""
+
+# [Opt] Server
+ENV DIMENSION="RubiKa"
+
+# =====================================
+
+
+# Specific bitbucket commit hash, or empty for latest
+ENV COMMIT_TAG=""
+
+# Copy and run deployment script.  Downloads from source and builds bot.
+
+COPY vhabot-deploy.sh /vhabot-deploy.sh
+COPY docker-entrypoint.sh /entrypoint.sh
+
+RUN chmod 755 /entrypoint.sh && \
+    chmod 755 /vhabot-deploy.sh && \
+    /vhabot-deploy.sh && \
     useradd -u 999 vhabot && \
     chown vhabot.vhabot -R /opt/vhabot/data
-
-COPY docker-entrypoint.sh /entrypoint.sh
-RUN chmod 755 /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
